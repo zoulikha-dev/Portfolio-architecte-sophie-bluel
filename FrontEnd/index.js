@@ -1,15 +1,21 @@
 //On rattache div HTML
 const divGallery = document.querySelector(".gallery");
-
+let listeTravaux;
 //Appel de l'API works
 async function works() {
   const response = await fetch("http://localhost:5678/api/works");
-  const listeTravaux = await response.json();
+  listeTravaux = await response.json();
   console.log(listeTravaux);
-  // Boucle For afin de générer tout la liste
-  for (let i = 0; i < listeTravaux.length; i++) {
+  afficheWorks(listeTravaux);
+}
+
+function afficheWorks(travauxAAfficher) {
+  divGallery.innerHTML = "";
+  // Entourer notre code avec une boucle for.
+  // Cela permet de créer toutes les fiches produits de notre site.
+  for (let i = 0; i < travauxAAfficher.length; i++) {
     //Création des balises
-    const projet = listeTravaux[i];
+    const projet = travauxAAfficher[i];
 
     const figureElement = document.createElement("figure");
     divGallery.appendChild(figureElement);
@@ -23,11 +29,13 @@ async function works() {
     figureElement.appendChild(titleElement);
   }
 }
-
 works();
 
 const divMenu = document.querySelector("#menu-bouton");
-
+const all = document.querySelector("#all");
+all.addEventListener("click", () => {
+  afficheWorks(listeTravaux);
+});
 //Appel de l'API catégories
 async function categories() {
   const response = await fetch("http://localhost:5678/api/categories");
@@ -43,25 +51,13 @@ async function categories() {
     divMenu.appendChild(buttonElement);
 
     buttonElement.addEventListener("click", () => {
-      //refait une requête avec la route api/works
-      async function works() {
-        const response = await fetch("http://localhost:5678/api/works");
-        const listeTravaux = await response.json();
-        // for (let i = 0; i < listeTravaux.length; i++) {
-        //   const projet = listeTravaux[i];
-        // }
-      }
-      console.log(buttonElement);
+      console.log(listeTravaux);
+      const travauxFiltres = listeTravaux.filter(function (work) {
+        return work.categoryId === category.id;
+      });
+      afficheWorks(travauxFiltres);
+      console.log(listeTravaux);
     });
   }
 }
-
 categories();
-
-// const boutonFiltrer = document.querySelector(".btn-filtrer");
-
-// boutonFiltrer.addEventListener("click", function () {
-//    const piecesFiltrees = pieces.filter(function (piece) {
-//        return piece.prix <= 35;
-//    });
-//    ;
