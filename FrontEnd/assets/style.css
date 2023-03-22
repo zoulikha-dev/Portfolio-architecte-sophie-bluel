@@ -207,3 +207,133 @@ footer nav ul {
 	background: #1D6154;
 	color: #FFFFFF;
 }
+
+.mdp {
+color: #3D3D3D;
+}
+
+#page-login {
+	width: 50%;
+margin: auto;
+}
+#page-login > * {
+	text-align: center;
+
+}
+#page-login h2{
+	margin-bottom: 20px;
+}
+#page-login form {
+	text-align: left;
+	margin-top:30px;
+	display: flex;
+	flex-direction: column;
+}
+
+#page-login input {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+#page-login label {
+	margin: 2em 0 1em 0;
+}
+#page-login textarea {
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+.mode-edition {
+	display: flex;
+	justify-content: center;
+	background: black;
+	width: 100%;
+	height: 59px;
+}
+
+.mode-edition ul {
+	display: flex;
+	align-items: center;
+	font-size: 16px;
+	line-height: 19px;
+	color: #FFFFFF;
+	gap: 44px;
+}
+
+.mode-edition li:hover {
+	background: #FFFFFF;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 12px;
+	border-radius: 60px;
+	height: 38px;
+	width: 200px;
+	font-weight: 500;
+	font-size: 14px;
+	color: #000000;
+}
+
+.btn-modifier1 {
+	display: flex;
+	margin: 15px 0 0 57px;
+    gap: 11px;
+	border: none;
+	background: none;
+	padding: 0;
+	font-family: 'Work Sans';
+	font-size: 14px;
+	line-height: 16px;
+}
+
+.btn-modifier2 {
+	display: flex;
+    gap: 11px;
+	border: none;
+	background: none;
+	padding: 0;
+	font-family: 'Work Sans';
+	font-size: 14px;
+	line-height: 16px;
+	margin-bottom: 1em;
+}
+
+.modif-mode-edition {
+	display: flex;
+	justify-content: center;
+	gap: 31px;
+	align-items: center;
+}
+
+.mode-edition, .btn-modifier1, .btn-modifier2, .lien-logout {
+	display: none;
+}
+
+.modale {
+	height: 100vh;
+	width: 100vw;
+	background: rgba(0, 0, 0, 0.3);
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.modale-content {
+	width: 430px;
+	height: 631px;
+	background-color: #FFFFFF;
+	border-radius: 10px;
+	padding: 50px 100px;
+	border: solid 1px red;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.delete-gallery {
+	color: #D65353;
+}
