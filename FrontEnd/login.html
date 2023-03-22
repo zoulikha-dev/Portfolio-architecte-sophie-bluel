@@ -15,7 +15,7 @@
   </head>
   <body>
     <header>
-      <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+      <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
       <nav>
         <ul>
           <li>projets</li>
@@ -27,13 +27,18 @@
     </header>
 
     <main>
-      <section>
+      <section id="page-login">
         <h2>Log in</h2>
         <form id="login" action="#" method="post">
           <label for="email">E-mail</label>
-          <input type="email" name="email" id="email" />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            value="sophie.bluel@test.tld"
+          />
           <label for="pass">Mot de passe</label>
-          <input type="password" name="password" id="pass" />
+          <input type="password" name="password" id="pass" value="S0phie" />
           <input type="submit" value="Se connecter" />
         </form>
         <p><a class="mdp" href=""> Mot de passe oublié</a></p>
@@ -47,5 +52,6 @@
         </ul>
       </nav>
     </footer>
+    <script src="login.js"></script>
   </body>
 </html>
