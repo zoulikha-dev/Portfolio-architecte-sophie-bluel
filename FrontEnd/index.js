@@ -61,3 +61,30 @@ async function categories() {
   }
 }
 categories();
+
+function disconnected() {
+  window.localStorage.clear("token");
+  //quand on click sur logout ca renvoi à index.html
+  window.location.replace("index.html");
+}
+
+//si ya une valeur dans le localStorage (token)
+if (localStorage.getItem("token")) {
+  //afficher les modif apportée sur html
+  document.getElementById("menu-bouton").style.display = "none";
+  document.querySelector(".mode-edition").style.display = "flex";
+  document.querySelector(".btn-modifier1").style.display = "block";
+  document.querySelector(".btn-modifier2").style.display = "block";
+  document.querySelector(".lien-login").style.display = "none";
+  document.querySelector(".lien-logout").style.display = "block";
+  //ajout d'un event listener sur l'évènement click, je fais appel a la fonction creer plus haut
+  document
+    .querySelector(".lien-logout")
+    .addEventListener("click", disconnected);
+} else {
+  //sinon ne pas les faire apparaître
+  document.querySelector(".mode-edition").style.display = "none";
+  document.querySelector(".btn-modifier1").style.display = "none";
+  document.querySelector(".btn-modifier2").style.display = "none";
+  document.querySelector(".lien-logout").style.display = "none";
+}
