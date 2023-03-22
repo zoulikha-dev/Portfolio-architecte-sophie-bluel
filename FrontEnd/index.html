@@ -12,15 +12,35 @@
     />
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
+    <script
+      src="https://kit.fontawesome.com/75ad6ddfbf.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
+  <div class="modale">
+    <div class="modale-content">
+      <h3>Galerie photo</h3>
+      <div id="edit-gallery" class="edit-gallery"></div>
+      <hr />
+      <input type="submit" value="Ajouter une photo" />
+      <button class="delete-gallery">Supprimer la gallerie</button>
+    </div>
+  </div>
   <body>
+    <div class="mode-edition">
+      <ul>
+        <li><i class="fa-regular fa-pen-to-square"></i> Mode édition</li>
+        <li>publier les changements</li>
+      </ul>
+    </div>
     <header>
-      <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+      <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
       <nav>
         <ul>
           <li>projets</li>
           <li>contact</li>
-          <li><a href="login.html">login</a></li>
+          <li><a href="login.html" class="lien-login">login</a></li>
+          <li><a href="" class="lien-logout">logout</a></li>
           <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
         </ul>
       </nav>
@@ -29,6 +49,9 @@
       <section id="introduction">
         <figure>
           <img src="./assets/images/sophie-bluel.png" alt="" />
+          <button class="btn-modifier1">
+            <i class="fa-regular fa-pen-to-square"></i> modifier
+          </button>
         </figure>
         <article>
           <h2>Designer d'espace</h2>
@@ -50,7 +73,12 @@
         </article>
       </section>
       <section id="portfolio">
-        <h2>Mes Projets</h2>
+        <div class="modif-mode-edition">
+          <h2>Mes Projets</h2>
+          <button class="btn-modifier2">
+            <i class="fa-regular fa-pen-to-square"></i> modifier
+          </button>
+        </div>
 
         <div id="menu-bouton">
           <button class="button-category" id="all">Tous</button>
