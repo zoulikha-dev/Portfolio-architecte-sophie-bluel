@@ -17,15 +17,20 @@
       crossorigin="anonymous"
     ></script>
   </head>
-  <div class="modale">
-    <div class="modale-content">
+  <!-- MODALE -->
+  <div class="modale" style="display: none">
+    <div class="modale-content js-modal-stop">
+      <button class="btn-close"><i class="fa-solid fa-xmark"></i></button>
       <h3>Galerie photo</h3>
-      <div id="edit-gallery" class="edit-gallery"></div>
-      <hr />
-      <input type="submit" value="Ajouter une photo" />
+      <div id="edit-gallery" class="edit-gallery js-modal-stop"></div>
+
+      <div id="hr"></div>
+
+      <input id="btn-photo" type="submit" value="Ajouter une photo" />
       <button class="delete-gallery">Supprimer la gallerie</button>
     </div>
   </div>
+  <!-- FIN MODALE -->
   <body>
     <div class="mode-edition">
       <ul>

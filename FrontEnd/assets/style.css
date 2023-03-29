@@ -328,12 +328,109 @@ margin: auto;
 	background-color: #FFFFFF;
 	border-radius: 10px;
 	padding: 50px 100px;
-	border: solid 1px red;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	position: relative;
 }
 
 .delete-gallery {
+	font-family: 'Syne';
+	font-size: 14px;
 	color: #D65353;
+	border: none;
+	background: none;
 }
+
+.edit-gallery {
+	display: grid;
+	grid-template-columns: 80px 80px 80px 80px 80px;
+	gap: 25px 6px;
+	margin: 46px 105px 0px 105px;
+
+}
+
+.premier-work {
+	width: 78.12px;
+	height: 104.08px;
+	background-size: cover;
+}
+.btn-work {
+	position: relative;
+}
+
+.btn-projet {
+	border: none;
+	background: none;
+	background: #000000;
+	border-radius: 2px;
+	position: absolute;
+	Width: 17px;
+	Height: 17px;
+	top: 6px;
+	right: 26px;
+}
+
+.btn-delete {
+	border: none;
+	background: none;
+	border-radius: 2px;
+	background: #000000;
+	position: absolute;
+	Width: 17px;
+	Height: 17px;
+	top: 6px;
+	right: 6px;
+}
+
+.icone-delete {
+	color: #FFFFFF;
+	position: absolute;
+	top: 8px;
+	right: 4px
+}
+
+.btn-editer {
+	border: none;
+	background: none;
+	padding: 0;
+	position: absolute;
+	margin-top: 105px
+}
+
+.icone-editer {
+	color: #FFFFFF;
+	/* position: absolute; */
+	top: 4px;
+	right: 4px
+}
+
+.btn-close {
+	border: none;
+	background: none;
+	position: absolute;
+	top: 32px;
+	right: 35px;
+}
+
+h3 {
+	font-size: 26px;
+}
+
+#btn-photo {
+	border: none;
+	background: #1D6154;
+	border-radius: 60px;
+	font-size: 14px;
+	width: 237px;
+	height: 36px;
+	margin-top: 33px;
+	margin-bottom: 23px;
+}
+
+#hr {
+	margin-top: 67px;
+	border-bottom: 1px solid #b3b3b3;
+	width: 420px;
+}
+
