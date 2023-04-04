@@ -30,6 +30,47 @@
       <button class="delete-gallery">Supprimer la gallerie</button>
     </div>
   </div>
+
+  <!-- Formulaire de la Modale -->
+  <div class="modale" id="modal-v2">
+    <div class="modale-content-v2" id="">
+      <button class="btn-close"><i class="fa-solid fa-xmark"></i></button>
+      <button class="btn-return"><i class="fa-solid fa-arrow-left"></i></button>
+      <span class="title-photo"><h3>Ajout photo</h3></span>
+      <form class="form-modale">
+        <div class="div-img">
+          <img
+            src="assets/icons/picture-svgrepo-com 1.png"
+            alt=""
+            class="icone-img"
+          />
+          <label for="ajouter-img" class="ajouter-img"> + Ajouter photo</label>
+          <input
+            type="file"
+            id="ajouter-img"
+            accept="image/png, image/jpeg"
+            style="display: none"
+          />
+          <p class="jpg">jpg. png : 4mo</p>
+        </div>
+
+        <label for="title">Titre</label>
+        <input type="text" id="title" />
+
+        <label for="form-categorie">Catégorie</label>
+        <select name="categorie" id="form-categorie">
+          <option value="objets"></option>
+          <option value="appartements"></option>
+          <option value="hotels&restaurants"></option>
+        </select>
+      </form>
+
+      <div id="hr"></div>
+
+      <input id="btn-valider" type="submit" value="Valider" />
+    </div>
+  </div>
+
   <!-- FIN MODALE -->
   <body>
     <div class="mode-edition">

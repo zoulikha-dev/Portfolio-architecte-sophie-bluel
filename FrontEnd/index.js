@@ -141,7 +141,7 @@ function afficheWorksMini() {
 
     const iconeEditer = document.createElement("i");
     projectButtonElement.appendChild(iconeEditer);
-    iconeEditer.classList.add("fa-light", "fa-arrows-up-down-left-right");
+    iconeEditer.classList.add("fa-solid", "fa-arrows-up-down-left-right");
     iconeEditer.classList.add("icone-editer");
 
     const deleteButtonElement = document.createElement("button");
@@ -176,4 +176,16 @@ async function deletework(id) {
     const deleteResponse = await response.json();
     console.log(deleteResponse);
   }
+
+  if (response.status === 200) {
+    works();
+    afficheWorksMini();
+  }
 }
+
+const form = document.querySelector("form");
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(form);
+});
