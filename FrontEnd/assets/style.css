@@ -405,7 +405,7 @@ margin: auto;
 	right: 2px;
 }
 
-.btn-close {
+.btn-close, .btn-close-v2 {
 	border: none;
 	background: none;
 	position: absolute;
@@ -525,4 +525,12 @@ label {
 .title-photo {
 	display: flex;
 	justify-content: center;
+}
+
+.modale-content-v2 {
+	display: none;
+}
+
+.modale {
+	display: none;
 }

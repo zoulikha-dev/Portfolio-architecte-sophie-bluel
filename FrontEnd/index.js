@@ -91,9 +91,8 @@ if (localStorage.getItem("token")) {
 
 // -------------------------------------- fenêtre modale ----------------------------------------
 //Ouverture de la modale
-const openModal = function (event) {
-  event.preventDefault();
-  document.querySelector(".modale").style.display = null; // Permet de retirer le display none que j'ai mis
+const openModal = function () {
+  document.querySelector(".modale").style.display = "block"; // Permet de retirer le display none que j'ai mis
   afficheWorksMini();
 };
 
@@ -105,8 +104,7 @@ const stopPropagation = function (event) {
   event.stopPropagation();
 };
 
-const closeModal = function (event) {
-  event.preventDefault();
+const closeModal = function () {
   document.querySelector(".modale").style.display = "none";
 };
 
@@ -147,7 +145,9 @@ function afficheWorksMini() {
     const deleteButtonElement = document.createElement("button");
     divButtonElement.appendChild(deleteButtonElement);
     deleteButtonElement.classList.add("btn-delete");
-    deleteButtonElement.addEventListener("click", () => deletework(projet.id));
+    deleteButtonElement.addEventListener("click", (e) =>
+      deletework(projet.id, e)
+    );
 
     const iconeDelete = document.createElement("i");
     deleteButtonElement.appendChild(iconeDelete);
@@ -161,12 +161,13 @@ function afficheWorksMini() {
   }
 }
 
-async function deletework(id) {
+async function deletework(id, event) {
   console.log(id);
   const confirmDelete = confirm(
     "Êtes-vous sûr de bien vouloir supprimer ce projet ?"
   );
   if (confirmDelete) {
+    event.preventDefault();
     const response = await fetch(`http://localhost:5678/api/works/${id}`, {
       method: "DELETE",
       headers: {
@@ -176,16 +177,61 @@ async function deletework(id) {
     const deleteResponse = await response.json();
     console.log(deleteResponse);
   }
-
+  //si requête reussi
   if (response.status === 200) {
     works();
     afficheWorksMini();
   }
 }
 
-const form = document.querySelector("form");
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
+// ---------------------------    Affichage Modal version 2   ------------------------------------
 
-  const formData = new FormData(form);
+const openModalV2 = function (e) {
+  e.preventDefault();
+  document.querySelector("#modal-delete-gallery").style.display = "none";
+  document.querySelector("#modal-add-projet").style.display = "block";
+};
+
+document.querySelector("#btn-photo").addEventListener("click", openModalV2);
+
+const btnReturn = function (e) {
+  e.preventDefault();
+  document.querySelector("#modal-delete-gallery").style.display = "block";
+  document.querySelector("#modal-add-projet").style.display = "none";
+};
+
+document.querySelector(".btn-return").addEventListener("click", btnReturn);
+
+// ---------------------- upload image -------------------------------
+
+const form = document.querySelector("#form-projet");
+
+form.addEventListener("submit", function () {
+  const imageElement = document.querySelector("#ajouter-img");
+  const titleElement = document.querySelector("#title");
+  const categoryElement = document.querySelector("#form-categorie");
+
+  if (!imageElement.value || !titleElement.value || !categoryElement.value) {
+    return alert("Vous devez saisir une image, un titre et une categorie");
+  }
+
+  // const reader = new FileReader(); //permeet de lire le contenu de fichier
+  // reader.addEventListener("load", () => {
+  //   uploadedImage = reader.result; //On stock l'image ds la var et on affihce le resultat
+  //   document.querySelector(
+  //     ".div-img"
+  //   ).style.backgroundImage = `url(${uploadedImage})`;
+  // });
+  // reader.readAsDataURL(this.files[0]);
 });
+
+//  -----------------------------  Formulaire --------------------------------
+
+// const form = document.querySelector("form");
+
+// form.addEventListener("submit", (e) => {
+//   e.preventDefault();
+
+//   //creation des données du formulaire
+//   const formData = new FormData(form);
+// });
