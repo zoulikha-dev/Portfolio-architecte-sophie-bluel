@@ -18,21 +18,23 @@
     ></script>
   </head>
   <!-- MODALE -->
-  <div class="modale">
+  <div class="modale" id="modale">
     <div class="modale-content js-modal-stop" id="modal-delete-gallery">
-      <button class="btn-close" type="button">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-      <h3>Galerie photo</h3>
-      <div id="edit-gallery" class="edit-gallery js-modal-stop"></div>
+      <div class="modale-block">
+        <button class="btn-close" type="button">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <h3>Galerie photo</h3>
+        <div id="edit-gallery" class="edit-gallery js-modal-stop"></div>
 
-      <div id="hr"></div>
+        <div id="hr"></div>
 
-      <input id="btn-photo" type="submit" value="Ajouter une photo" />
-      <button class="delete-gallery">Supprimer la gallerie</button>
+        <input id="btn-photo" type="submit" value="Ajouter une photo" />
+        <button class="delete-gallery">Supprimer la gallerie</button>
+      </div>
     </div>
     <!-- version v2 -->
-    <div class="modale-content-v2" id="modal-add-projet">
+    <div class="modale-content-v2 js-modal-stop2" id="modal-add-projet">
       <button class="btn-close" type="button">
         <i class="fa-solid fa-xmark"></i>
       </button>
@@ -48,12 +50,7 @@
             class="icone-img"
           />
           <label for="ajouter-img" class="ajouter-img"> + Ajouter photo</label>
-          <input
-            type="file"
-            id="ajouter-img"
-            accept="image/png, image/jpeg"
-            style="visibility: hidden"
-          />
+          <input type="file" id="ajouter-img" accept="image/png, image/jpeg" />
           <p class="jpg">jpg. png : 4mo</p>
         </div>
 

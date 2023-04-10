@@ -92,7 +92,7 @@ if (localStorage.getItem("token")) {
 // -------------------------------------- fenêtre modale ----------------------------------------
 //Ouverture de la modale
 const openModal = function () {
-  document.querySelector(".modale").style.display = "block"; // Permet de retirer le display none que j'ai mis
+  document.querySelector(".modale").style.display = "block";
   afficheWorksMini();
 };
 
@@ -201,8 +201,11 @@ const btnReturn = function (e) {
 };
 
 document.querySelector(".btn-return").addEventListener("click", btnReturn);
+document
+  .querySelector(".js-modal-stop2")
+  .addEventListener("click", stopPropagation);
 
-// ---------------------- upload image -------------------------------
+// // ---------------------- upload image -------------------------------
 
 const form = document.querySelector("#form-projet");
 
@@ -210,20 +213,21 @@ form.addEventListener("submit", function () {
   const imageElement = document.querySelector("#ajouter-img");
   const titleElement = document.querySelector("#title");
   const categoryElement = document.querySelector("#form-categorie");
-
-  if (!imageElement.value || !titleElement.value || !categoryElement.value) {
-    return alert("Vous devez saisir une image, un titre et une categorie");
-  }
-
-  // const reader = new FileReader(); //permeet de lire le contenu de fichier
-  // reader.addEventListener("load", () => {
-  //   uploadedImage = reader.result; //On stock l'image ds la var et on affihce le resultat
-  //   document.querySelector(
-  //     ".div-img"
-  //   ).style.backgroundImage = `url(${uploadedImage})`;
-  // });
-  // reader.readAsDataURL(this.files[0]);
 });
+
+// if (!imageElement.value || !titleElement.value || !categoryElement.value) {
+//   return alert("Vous devez saisir une image, un titre et une categorie");
+// }
+
+// const reader = new FileReader(); //permeet de lire le contenu de fichier
+// reader.addEventListener("load", () => {
+//   uploadedImage = reader.result; //On stock l'image ds la var et on affihce le resultat
+//   document.querySelector(
+//     ".div-img"
+//   ).style.backgroundImage = `url(${uploadedImage})`;
+// });
+// reader.readAsDataURL(this.files[0]);
+// });
 
 //  -----------------------------  Formulaire --------------------------------
 
