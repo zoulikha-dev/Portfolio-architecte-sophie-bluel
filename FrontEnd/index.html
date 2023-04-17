@@ -50,24 +50,31 @@
             class="icone-img"
           />
           <label for="ajouter-img" class="ajouter-img"> + Ajouter photo</label>
-          <input type="file" id="ajouter-img" accept="image/png, image/jpeg" />
+          <input
+            type="file"
+            id="ajouter-img"
+            name="image"
+            accept="image/png, image/jpeg"
+          />
           <p class="jpg">jpg. png : 4mo</p>
         </div>
 
         <label for="title">Titre</label>
-        <input type="text" id="title" />
-
+        <input type="text" id="title" name="title" />
         <label for="form-categorie">Catégorie</label>
-        <select name="categorie" id="form-categorie">
-          <option value="objets"></option>
-          <option value="appartements"></option>
-          <option value="hotels&restaurants"></option>
-        </select>
+        <select name="category" id="form-categorie"></select>
+
+        <p class="message-erreur">
+          Veuillez télécharger une image ou saisir un titre ou selectionner une
+          catégorie.
+        </p>
+
+        <p class="message-ok">Le projet a bien été ajouté</p>
+
+        <div id="hr"></div>
+
+        <input id="btn-valider" type="submit" value="Valider" />
       </form>
-
-      <div id="hr"></div>
-
-      <input id="btn-valider" type="submit" value="Valider" />
     </div>
   </div>
 

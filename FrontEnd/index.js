@@ -1,6 +1,7 @@
 //On rattache div HTML
 const divGallery = document.querySelector(".gallery");
 let listeTravaux;
+let listeCategories;
 //Appel de l'API works
 async function works() {
   const response = await fetch("http://localhost:5678/api/works");
@@ -39,8 +40,9 @@ all.addEventListener("click", () => {
 //Appel de l'API catégories
 async function categories() {
   const response = await fetch("http://localhost:5678/api/categories");
-  const listeCategories = await response.json();
+  listeCategories = await response.json();
   console.log(listeCategories);
+  categoriesModale();
 
   for (let index = 0; index < listeCategories.length; index++) {
     const category = listeCategories[index];
@@ -107,12 +109,15 @@ const stopPropagation = function (event) {
 const closeModal = function () {
   document.querySelector(".modale").style.display = "none";
 };
-
-document.querySelector(".modale").addEventListener("click", closeModal);
-document.querySelector(".btn-close").addEventListener("click", closeModal);
 document
   .querySelector(".js-modal-stop")
   .addEventListener("click", stopPropagation);
+document.querySelector(".modale").addEventListener("click", closeModal);
+
+const btnClose = document.querySelectorAll(".btn-close");
+btnClose.forEach(function (element) {
+  element.addEventListener("click", closeModal);
+});
 
 // ------------------------------------------ Faire apparaître les projets ds Modale --------------------------------
 function afficheWorksMini() {
@@ -205,37 +210,93 @@ document
   .querySelector(".js-modal-stop2")
   .addEventListener("click", stopPropagation);
 
-// // ---------------------- upload image -------------------------------
+// // ---------------------- FORMULAIRE -------------------------------
+
+async function categoriesModale() {
+  for (let index = 0; index < listeCategories.length; index++) {
+    const category = listeCategories[index];
+
+    const selectForm = document.querySelector("#form-categorie");
+
+    const optionForm = document.createElement("option");
+    optionForm.innerText = category.name;
+    optionForm.value = category.id;
+    selectForm.appendChild(optionForm);
+  }
+}
+
+const imageElement = document.querySelector("#ajouter-img");
+const titleElement = document.querySelector("#title");
+const categoryElement = document.querySelector("#form-categorie");
+const btnValider = document.querySelector("#btn-valider");
+const msgErreur = document.querySelector(".message-erreur");
+const msgOk = document.querySelector(".message-ok");
+
+//On les stock dans d'autre variable pour cibler la valeur saisie par l'utilisateur ou le fichier chargé
+const ajoutImage = imageElement.value;
+const ajoutTitle = titleElement.value;
+const ajoutCategory = categoryElement.value;
 
 const form = document.querySelector("#form-projet");
 
-form.addEventListener("submit", function () {
-  const imageElement = document.querySelector("#ajouter-img");
-  const titleElement = document.querySelector("#title");
-  const categoryElement = document.querySelector("#form-categorie");
-});
-
-// if (!imageElement.value || !titleElement.value || !categoryElement.value) {
-//   return alert("Vous devez saisir une image, un titre et une categorie");
+// function change() {
+//   btnValider.style.background = "#1D6154";
 // }
 
-// const reader = new FileReader(); //permeet de lire le contenu de fichier
-// reader.addEventListener("load", () => {
-//   uploadedImage = reader.result; //On stock l'image ds la var et on affihce le resultat
-//   document.querySelector(
-//     ".div-img"
-//   ).style.backgroundImage = `url(${uploadedImage})`;
-// });
-// reader.readAsDataURL(this.files[0]);
-// });
-
-//  -----------------------------  Formulaire --------------------------------
-
-// const form = document.querySelector("form");
-
-// form.addEventListener("submit", (e) => {
+//j'ai essayer de mettee 'input' au lieu de change, rien ne fonctionne
+// form.addEventListener("change", function (e) {
 //   e.preventDefault();
-
-//   //creation des données du formulaire
-//   const formData = new FormData(form);
+//   if (
+//     ajoutImage.length > 0 &&
+//     ajoutTitle.length > 0 &&
+//     ajoutCategory.length > 0
+//   ) {
+//     btnValider.style.background = "#1D6154";
+//   }
 // });
+
+// btnValider.addEventListener("change", () => {
+//   if (ajoutImage && ajoutTitle && ajoutCategory) {
+//     btnValider.style.background = "#1D6154";
+//   }
+// });
+
+form.addEventListener("submit", async function (e) {
+  e.preventDefault();
+  if (!ajoutImage || !ajoutTitle || !ajoutCategory) {
+    msgErreur.style.visibility = "visible";
+  } else {
+    msgOk.style.visibility = "visible";
+  }
+
+  const formData = new FormData(form);
+  console.log(formData);
+
+  const response = await fetch("http://localhost:5678/api/works", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+    },
+    body: formData,
+  });
+});
+
+// ----------------------------------------------- L'image s'affiche -----------------------------------------
+// const iconeImg = document.querySelector(".ajouter-img");
+const imageInput = document.querySelector("#ajouter-img");
+let uploadedImage = "";
+
+imageInput.addEventListener("change", function () {
+  const reader = new FileReader(); //permeet de lire le contenu de fichier
+  reader.addEventListener("load", () => {
+    uploadedImage = reader.result;
+    document.querySelector(
+      ".div-img"
+    ).style.backgroundImage = `url(${uploadedImage})`;
+  });
+  reader.readAsDataURL(this.files[0]);
+
+  // if (imageInput.value) {
+  // }
+});

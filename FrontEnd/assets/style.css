@@ -415,7 +415,7 @@ margin: auto;
 	right: 2px;
 }
 
-.btn-close, .btn-close-v2 {
+.btn-close {
 	border: none;
 	background: none;
 	position: absolute;
@@ -440,7 +440,7 @@ h3 {
 }
 
 #hr {
-	margin-top: 67px;
+	margin-top: 47px;
 	border-bottom: 1px solid #b3b3b3;
 	width: 420px;
 }
@@ -454,7 +454,7 @@ h3 {
 	font-size: 14px;
 	width: 237px;
 	height: 36px;
-	margin-top: 33px;
+	margin-top: 33px; 
 	margin-bottom: 23px;
 }
 
@@ -509,6 +509,11 @@ label {
 	height: 169px;
 	background: #d4e3ee;
 	border-radius: 3px;
+	background-size: cover;
+}
+
+.icone-img {
+	visibility: visible;
 }
 
 .ajouter-img {
@@ -520,7 +525,9 @@ label {
 	height: 36px;
 	background: #CBD6DC;
 	border-radius: 50px;
-	color: #306685;	
+	color: #306685;
+	background-size: cover;
+	visibility: visible
 }
 
 #ajouter-img {
@@ -535,6 +542,7 @@ label {
 	font-size: 10px;
 	line-height: 12px;
 	color: #444444;
+	/* visibility: hidden; */
 }
 
 .btn-return {
@@ -548,4 +556,14 @@ label {
 .title-photo {
 	display: flex;
 	justify-content: center;
+}
+
+.message-erreur, .message-ok {
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 400;
+	text-align: center;
+	margin-top: 20px;
+	color: red;
+	visibility: hidden;
 }
