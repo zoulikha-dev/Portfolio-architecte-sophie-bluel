@@ -79,7 +79,6 @@ if (localStorage.getItem("token")) {
   document.querySelector(".btn-modifier2").style.display = "block";
   document.querySelector(".lien-login").style.display = "none";
   document.querySelector(".lien-logout").style.display = "block";
-  //ajout d'un event listener sur l'évènement click, je fais appel a la fonction creer plus haut
   document
     .querySelector(".lien-logout")
     .addEventListener("click", disconnected);
@@ -91,40 +90,34 @@ if (localStorage.getItem("token")) {
   document.querySelector(".lien-logout").style.display = "none";
 }
 
-// -------------------------------------- fenêtre modale ----------------------------------------
-//Ouverture de la modale
+// ---------------------------------------------------- OUVERTURE DE LA MODALE ---------------------------------------------
 const openModal = function () {
   document.querySelector(".modale").style.display = "block";
   afficheWorksMini();
 };
-
-document.querySelector(".btn-modifier2").addEventListener("click", openModal);
-
-//Fermeture de la modale
 //Permet la propagation de l'evenement vers les parents
 const stopPropagation = function (event) {
   event.stopPropagation();
 };
-
 const closeModal = function () {
   document.querySelector(".modale").style.display = "none";
 };
-document
-  .querySelector(".js-modal-stop")
-  .addEventListener("click", stopPropagation);
-document.querySelector(".modale").addEventListener("click", closeModal);
-
 const btnClose = document.querySelectorAll(".btn-close");
 btnClose.forEach(function (element) {
   element.addEventListener("click", closeModal);
 });
 
-// ------------------------------------------ Faire apparaître les projets ds Modale --------------------------------
+document.querySelector(".btn-modifier2").addEventListener("click", openModal);
+document
+  .querySelector(".js-modal-stop")
+  .addEventListener("click", stopPropagation);
+document.querySelector(".modale").addEventListener("click", closeModal);
+
+// ------------------------------------------ APPARITION DES PROJETS DE LA MODALE -------------------------------------------
 function afficheWorksMini() {
   const editGallery = document.querySelector("#edit-gallery");
   editGallery.innerHTML = "";
-  // Entourer notre code avec une boucle for.
-  // Cela permet de créer toutes les fiches produits de notre site.
+
   for (let i = 0; i < listeTravaux.length; i++) {
     //Création des balises
     const projet = listeTravaux[i];
@@ -182,14 +175,14 @@ async function deletework(id, event) {
     const deleteResponse = await response.json();
     console.log(deleteResponse);
   }
-  //si requête reussi
+
   if (response.status === 200) {
     works();
     afficheWorksMini();
   }
 }
 
-// ---------------------------    Affichage Modal version 2   ------------------------------------
+// ---------------------------    Affichage Modal VERSION 2   ------------------------------------
 
 const openModalV2 = function (e) {
   e.preventDefault();
@@ -210,7 +203,7 @@ document
   .querySelector(".js-modal-stop2")
   .addEventListener("click", stopPropagation);
 
-// // ---------------------- FORMULAIRE -------------------------------
+// --------------------------------------------------- CREATION DU CHAMP SELECT CATEGORIE  ------------------------------------------
 
 async function categoriesModale() {
   for (let index = 0; index < listeCategories.length; index++) {
@@ -224,6 +217,8 @@ async function categoriesModale() {
     selectForm.appendChild(optionForm);
   }
 }
+
+//-------------------------------------------------- FORMULAIRE ----------------------------------------------------
 
 const imageElement = document.querySelector("#ajouter-img");
 const titleElement = document.querySelector("#title");
@@ -239,27 +234,11 @@ const ajoutCategory = categoryElement.value;
 
 const form = document.querySelector("#form-projet");
 
-// function change() {
-//   btnValider.style.background = "#1D6154";
-// }
-
-//j'ai essayer de mettee 'input' au lieu de change, rien ne fonctionne
-// form.addEventListener("change", function (e) {
-//   e.preventDefault();
-//   if (
-//     ajoutImage.length > 0 &&
-//     ajoutTitle.length > 0 &&
-//     ajoutCategory.length > 0
-//   ) {
-//     btnValider.style.background = "#1D6154";
-//   }
-// });
-
-// btnValider.addEventListener("change", () => {
-//   if (ajoutImage && ajoutTitle && ajoutCategory) {
-//     btnValider.style.background = "#1D6154";
-//   }
-// });
+btnValider.addEventListener("change", () => {
+  if (ajoutImage && ajoutTitle && ajoutCategory) {
+    btnValider.style.background = "#1D6154";
+  }
+});
 
 form.addEventListener("submit", async function (e) {
   e.preventDefault();
@@ -282,7 +261,8 @@ form.addEventListener("submit", async function (e) {
   });
 });
 
-// ----------------------------------------------- L'image s'affiche -----------------------------------------
+// ----------------------------------------------- L'image s'affiche Dans le champ prévu à cet effet -----------------------------------------
+
 // const iconeImg = document.querySelector(".ajouter-img");
 const imageInput = document.querySelector("#ajouter-img");
 let uploadedImage = "";
@@ -296,7 +276,4 @@ imageInput.addEventListener("change", function () {
     ).style.backgroundImage = `url(${uploadedImage})`;
   });
   reader.readAsDataURL(this.files[0]);
-
-  // if (imageInput.value) {
-  // }
 });
