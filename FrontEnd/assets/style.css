@@ -445,10 +445,9 @@ h3 {
 	width: 420px;
 }
 
-#btn-valider {
+.btn-valider {
 	display: flex;
 	justify-content: center;
-	background: #A7A7A7;
 	border: none;
 	border-radius: 60px;
 	font-size: 14px;
@@ -456,6 +455,14 @@ h3 {
 	height: 36px;
 	margin-top: 33px; 
 	margin-bottom: 23px;
+}
+
+.btn-disabled {
+	background: #A7A7A7 !important;
+}
+
+.btn-enabled {
+	background: #1D6154;
 }
 
 label {

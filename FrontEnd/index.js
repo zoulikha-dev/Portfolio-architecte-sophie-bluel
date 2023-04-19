@@ -7,16 +7,16 @@ async function works() {
   const response = await fetch("http://localhost:5678/api/works");
   listeTravaux = await response.json();
   console.log(listeTravaux);
-  afficheWorks();
+  afficheWorks(listeTravaux);
 }
 
-function afficheWorks() {
+function afficheWorks(projets) {
   divGallery.innerHTML = "";
   // Entourer notre code avec une boucle for.
   // Cela permet de créer toutes les fiches produits de notre site.
-  for (let i = 0; i < listeTravaux.length; i++) {
+  for (let i = 0; i < projets.length; i++) {
     //Création des balises
-    const projet = listeTravaux[i];
+    const projet = projets[i];
 
     const figureElement = document.createElement("figure");
     divGallery.appendChild(figureElement);
@@ -58,7 +58,7 @@ async function categories() {
         return work.categoryId === category.id;
       });
       afficheWorks(travauxFiltres);
-      console.log(listeTravaux);
+      console.log(travauxFiltres);
     });
   }
 }
@@ -227,25 +227,34 @@ const btnValider = document.querySelector("#btn-valider");
 const msgErreur = document.querySelector(".message-erreur");
 const msgOk = document.querySelector(".message-ok");
 
-//On les stock dans d'autre variable pour cibler la valeur saisie par l'utilisateur ou le fichier chargé
-const ajoutImage = imageElement.value;
-const ajoutTitle = titleElement.value;
-const ajoutCategory = categoryElement.value;
-
 const form = document.querySelector("#form-projet");
 
-btnValider.addEventListener("change", () => {
-  if (ajoutImage && ajoutTitle && ajoutCategory) {
-    btnValider.style.background = "#1D6154";
+form.addEventListener("change", function (e) {
+  const ajoutImage = imageElement.value;
+  const ajoutTitle = titleElement.value;
+  const ajoutCategory = categoryElement.value;
+
+  if (!ajoutImage || !ajoutTitle || !ajoutCategory) {
+    btnValider.classList.add("btn-disabled");
+    btnValider.classList.remove("btn-enabled");
+  } else {
+    btnValider.classList.add("btn-enabled");
+    btnValider.classList.remove("btn-disabled");
   }
 });
 
 form.addEventListener("submit", async function (e) {
   e.preventDefault();
+
+  //On les stock dans d'autre variable pour cibler la valeur saisie par l'utilisateur ou le fichier chargé
+  const ajoutImage = imageElement.value;
+  const ajoutTitle = titleElement.value;
+  const ajoutCategory = categoryElement.value;
+
   if (!ajoutImage || !ajoutTitle || !ajoutCategory) {
-    msgErreur.style.visibility = "visible";
+    return (msgErreur.style.visibility = "visible");
   } else {
-    msgOk.style.visibility = "visible";
+    msgErreur.style.visibility = "hidden";
   }
 
   const formData = new FormData(form);
@@ -259,6 +268,10 @@ form.addEventListener("submit", async function (e) {
     },
     body: formData,
   });
+  if (response.status === 201) {
+    closeModal();
+    works();
+  }
 });
 
 // ----------------------------------------------- L'image s'affiche Dans le champ prévu à cet effet -----------------------------------------
