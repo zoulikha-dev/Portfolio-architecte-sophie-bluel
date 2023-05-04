@@ -276,7 +276,6 @@ form.addEventListener("submit", async function (e) {
 
 // ----------------------------------------------- L'image s'affiche Dans le champ prévu à cet effet -----------------------------------------
 
-// const iconeImg = document.querySelector(".ajouter-img");
 const imageInput = document.querySelector("#ajouter-img");
 let uploadedImage = "";
 
