@@ -1,7 +1,8 @@
-//On rattache div HTML
+//On rattache la div HTML
 const divGallery = document.querySelector(".gallery");
 let listeTravaux;
 let listeCategories;
+
 //Appel de l'API works
 async function works() {
   const response = await fetch("http://localhost:5678/api/works");
@@ -10,33 +11,46 @@ async function works() {
   afficheWorks(listeTravaux);
 }
 
+//Affichage des projets dans la gallery
 function afficheWorks(projets) {
+  //On vide le contenu de la galerie
   divGallery.innerHTML = "";
-  // Entourer notre code avec une boucle for.
-  // Cela permet de créer toutes les fiches produits de notre site.
+
+  //Parcours des projets
   for (let i = 0; i < projets.length; i++) {
     //Création des balises
     const projet = projets[i];
 
+    //Création de l'élément figure
     const figureElement = document.createElement("figure");
+    //Ajout de l'élément figure à la div de la galerie
     divGallery.appendChild(figureElement);
 
+    //Création de l'élément img pour l'image du projet
     const imageUrlElement = document.createElement("img");
     imageUrlElement.src = projet.imageUrl;
+    //Ajout de l'élément img à l'élément figure
     figureElement.appendChild(imageUrlElement);
 
+    //Création de l'élément figcaption pour le titre du projet
     const titleElement = document.createElement("figcaption");
     titleElement.innerText = projet.title;
+    //Ajout de l'élément figcaption à l'élément figure
     figureElement.appendChild(titleElement);
   }
 }
+//Appel de la fonction works pour récupérer les projets et les afficher dans la gallerie
 works();
 
+//Selection de la div menu
 const divMenu = document.querySelector("#menu-bouton");
+
+//Selection du bouton "all" et ajout d'un ecouteur d'évènement click
 const all = document.querySelector("#all");
 all.addEventListener("click", () => {
   afficheWorks(listeTravaux);
 });
+
 //Appel de l'API catégories
 async function categories() {
   const response = await fetch("http://localhost:5678/api/categories");
@@ -44,25 +58,34 @@ async function categories() {
   console.log(listeCategories);
   categoriesModale();
 
+  //parcours des catégories
   for (let index = 0; index < listeCategories.length; index++) {
     const category = listeCategories[index];
 
+    //Création d'un élément bouton pour chaque catégorie
     const buttonElement = document.createElement("button");
     buttonElement.innerText = category.name;
-    buttonElement.className = "button-category"; //Creation d'une classe "button-category" pour chaque bouton (css)
+    buttonElement.className = "button-category"; //Ajout d'une classe "button-category" pour chaque bouton (css)
+    //Ajout du bouton à la div du menu
     divMenu.appendChild(buttonElement);
 
+    //Ajout d'un écouteur d'évènement click pour filtrer les projets par catégorie
     buttonElement.addEventListener("click", () => {
       console.log(listeTravaux);
+      //Filtrage des travaux par catégorie
       const travauxFiltres = listeTravaux.filter(function (work) {
         return work.categoryId === category.id;
       });
+      //Affichage des travaux filtrés dans la galerie
       afficheWorks(travauxFiltres);
       console.log(travauxFiltres);
     });
   }
 }
+//appel de la fonction categories pour récupérer les catégories et afficher
 categories();
+
+// -------------------------------------------------------- mode edition -------------------------------------------------
 
 function disconnected() {
   window.localStorage.clear("token");
